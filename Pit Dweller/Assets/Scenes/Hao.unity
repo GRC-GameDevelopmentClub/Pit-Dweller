@@ -195,6 +195,16 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114835005155171306, guid: 04f926194ed84924689f6722764b1407,
+        type: 2}
+      propertyPath: dashSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114835005155171306, guid: 04f926194ed84924689f6722764b1407,
+        type: 2}
+      propertyPath: startDash
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04f926194ed84924689f6722764b1407, type: 2}
   m_IsPrefabAsset: 0
