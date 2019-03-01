@@ -19,7 +19,7 @@ public class playerMovement : MonoBehaviour {
         {
             transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
         }
-        if (Input.GetKeyDown(KeyCode.W) && grounded == true)
+        if (Input.GetKeyDown(KeyCode.W) && grounded == true || Input.GetKeyDown(KeyCode.Space) && grounded == true)
         {
             rb.AddForce(new Vector2(0, jumpH), ForceMode2D.Impulse);
         }
