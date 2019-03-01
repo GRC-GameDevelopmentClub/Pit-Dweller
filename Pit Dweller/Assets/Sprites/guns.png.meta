@@ -112,10 +112,10 @@ TextureImporter:
       name: guns_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 180
-        width: 50
-        height: 30
+        x: 24
+        y: 175
+        width: 31
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,7 +123,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 083ff2cecef281f44ac4bce617b83ec5
+      spriteID: 9f354b8ad54ebd44c93a78e33c874922
       vertices: []
       indices: 
       edges: []
@@ -132,10 +132,10 @@ TextureImporter:
       name: guns_1
       rect:
         serializedVersion: 2
-        x: 10
-        y: 110
-        width: 65
-        height: 30
+        x: 27
+        y: 95
+        width: 31
+        height: 66
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,7 +143,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec7b98cd82cc7164e93e0ace4aa4aa3a
+      spriteID: b4624c0f5bf081942b852fb4d6947937
       vertices: []
       indices: 
       edges: []
@@ -152,10 +152,10 @@ TextureImporter:
       name: guns_2
       rect:
         serializedVersion: 2
-        x: 10
-        y: 45
-        width: 50
-        height: 35
+        x: 22
+        y: 19
+        width: 35
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,7 +163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 035c369c6b3fafc4eb85e4fe523cf5b6
+      spriteID: a0d17f45d26c0fd4abac91e08b852e51
       vertices: []
       indices: 
       edges: []
