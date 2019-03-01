@@ -16,8 +16,16 @@ public class PitMechanic : MonoBehaviour {
     [SerializeField]
     private Transform transformB;
 
+    private bool isRaining;
+    [SerializeField]
+    private float rainCountdown;
+    [SerializeField]
+    private float rainDurationAmount;
+    [SerializeField]
+    private float rainDuration;
     void Start()
     {
+        rainCountdown = 30;
         posA = pitWater.localPosition;
         posB = transformB.localPosition;
         nextPos = posB;    
@@ -25,11 +33,36 @@ public class PitMechanic : MonoBehaviour {
 
     void Update()
     {
-        Move();
+        if (rainDuration <= 0)
+        {
+            isRaining = false;
+            rainCountdown -= Time.deltaTime;
+            if (rainCountdown <= 0)
+            {
+                rainDurationAmount += 10;
+                rainDuration = rainDurationAmount;
+            }
+        }
+        else
+        {
+            rainDuration -= Time.deltaTime;
+            isRaining = true;
+        }
+
+        if (isRaining)
+        {
+            Move();
+        }
     }
 
     private void Move()
     {
         pitWater.localPosition = Vector3.MoveTowards(pitWater.localPosition,nextPos,speed*Time.deltaTime);
     }
+
+    private void ChangePos()
+    {
+
+    }
+
 }
