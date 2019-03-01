@@ -22,7 +22,7 @@ public class gunToMouse : MonoBehaviour {
 
         transform.up = direction;
 
-        if (mousePosition.x < playerScreenPoint.x)
+        if (mousePosition.x < leftHand.position.x)
         {
             transform.position = leftHand.position;
             GetComponent<SpriteRenderer>().flipX = true;
