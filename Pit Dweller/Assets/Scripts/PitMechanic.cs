@@ -23,9 +23,11 @@ public class PitMechanic : MonoBehaviour {
     private float rainDurationAmount;
     [SerializeField]
     private float rainDuration;
+
+    public GameObject rainingText;
+
     void Start()
     {
-        rainCountdown = 30;
         posA = pitWater.localPosition;
         posB = transformB.localPosition;
         nextPos = posB;    
@@ -36,17 +38,30 @@ public class PitMechanic : MonoBehaviour {
         if (rainDuration <= 0)
         {
             isRaining = false;
+            rainingText.SetActive(false);
             rainCountdown -= Time.deltaTime;
             if (rainCountdown <= 0)
             {
-                rainDurationAmount += 10;
                 rainDuration = rainDurationAmount;
+                rainDurationAmount += 10;
+                if (nextPos == posA) ChangePos();
             }
         }
         else
         {
             rainDuration -= Time.deltaTime;
             isRaining = true;
+            rainingText.SetActive(true);
+            if (rainDuration <= 0)
+            {
+                rainCountdown = 10;
+                ChangePos();
+            }
+        }
+
+        if (!isRaining && nextPos == posA)
+        {
+            Move();
         }
 
         if (isRaining)
@@ -62,7 +77,7 @@ public class PitMechanic : MonoBehaviour {
 
     private void ChangePos()
     {
-
+        nextPos = nextPos != posA ? posA : posB;
     }
 
 }
