@@ -8,8 +8,11 @@ public class playerMovement : MonoBehaviour {
     public float dashSpeed;
     public float startDash;
 
+    [SerializeField]
     private float dashTime;
+    private bool isDashing;
     private Rigidbody2D rb;
+    [SerializeField]
     private bool grounded;
 
     void Start()
@@ -30,16 +33,20 @@ public class playerMovement : MonoBehaviour {
             rb.AddForce(new Vector2(0, jumpH), ForceMode2D.Impulse);
         }
         //DASH
+        dashTime -= Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            dashTime -= Time.deltaTime;
-            if (dashTime <= 0)
-            {
-                dashTime = startDash;
-                rb.velocity = Vector2.zero;
-            }
-            Dash();
+            dashTime = startDash;
         }
+        if (dashTime <= 0)
+        {
+            moveSpeed = 3;
+        }
+        else
+        {
+            moveSpeed = 7;
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -57,21 +64,5 @@ public class playerMovement : MonoBehaviour {
         }
     }
 
-    void Dash()
-    {
-
-        Vector3 playerScreenPoint = GetComponentInParent<Transform>().position;
-
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        if (mousePosition.x < playerScreenPoint.x)
-        {
-            rb.velocity = Vector2.left * dashSpeed;
-        }
-        else
-        {
-            rb.velocity = Vector2.right * dashSpeed;
-        }
-    }
+   
 }
