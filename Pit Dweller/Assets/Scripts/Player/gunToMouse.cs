@@ -25,17 +25,16 @@ public class gunToMouse : MonoBehaviour {
         if (mousePosition.x < leftHand.position.x)
         {
             transform.position = leftHand.position;
-            GetComponent<SpriteRenderer>().flipX = true;
+            transform.localScale = new Vector2(-1, transform.localScale.y);
         }
         else if (mousePosition.x == playerScreenPoint.x)
         {
             transform.position = leftHand.position;
-            GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
             transform.position = rightHand.position;
-            GetComponent<SpriteRenderer>().flipX = false;
+            transform.localScale = new Vector2(1, transform.localScale.y);
         }
 
     }
