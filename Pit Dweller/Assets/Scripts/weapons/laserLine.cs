@@ -21,10 +21,16 @@ public class laserLine : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         wormBehavior worm = collision.GetComponent<wormBehavior>();
+        spiderBehavior spider = collision.GetComponent<spiderBehavior>();
 
         if (worm != null)
         {
             worm.TakeDamage(damage);
+        }
+
+        if (spider != null) 
+        {
+            spider.TakeDamage(damage);
         }
     }
 }
