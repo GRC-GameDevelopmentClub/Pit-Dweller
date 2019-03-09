@@ -1,33 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class laser : MonoBehaviour {
+    public int damage;
     public Transform shootingPoint;
     public float fireRate = 0.2f;
     public float range = 100f;
-    public int ammoCapcity = 20;
-    public int currentAmmo = 20;
+    public int ammoCapcity = 200;
+    public int currentAmmo = 200;
     public float reloadTime;
-
     public LineRenderer line;
+    public Text ammotext;
+    public Transform lineEnd;
 
     private float firecounter;
     private bool justShot;
 
+    private Transform targetPlayer;
+    void Start()
+    {
+        GetComponentInParent<playerStat>().currentLAmmo = GetComponentInParent<playerStat>().ammoLCapcity;
+        targetPlayer = GameObject.FindGameObjectWithTag("Player").transform;
+        damage = targetPlayer.GetComponent<playerStat>().gunDamage;
+    }
+
     // Update is called once per frame
     void Update()
     {
-
+        ammotext.text = "Ammo: " + GetComponentInParent<playerStat>().currentLAmmo + "/" + GetComponentInParent<playerStat>().ammoLCapcity;
         if (Input.GetButton("Fire1"))
         {
-            if (!justShot)
+            if (!justShot && GetComponentInParent<playerStat>().currentLAmmo > 0)
             {
                 Shoot();
+                GetComponentInParent<playerStat>().TimeLShotCounter = 0;
                 justShot = true;
                 line.enabled = true;
+                lineEnd.GetComponent<EdgeCollider2D>().enabled = true;
             }
         }
+
 
         if (justShot)
         {
@@ -37,6 +51,7 @@ public class laser : MonoBehaviour {
                 firecounter = 0f;
                 justShot = false;
                 line.enabled = false;
+                lineEnd.GetComponent<EdgeCollider2D>().enabled = false;
             }
         }
     }
@@ -46,15 +61,18 @@ public class laser : MonoBehaviour {
         line.startWidth = .20f;
         line.endWidth = .20f;
         RaycastHit2D hit = Physics2D.Raycast(shootingPoint.position, shootingPoint.up);
-  
-        if (hit && hit.transform.tag != "Player")
+        
+        if (hit)
         {
             Debug.Log(hit.transform.name);
             line.SetPosition(1, hit.point);
+            lineEnd.position = hit.point;
         }
+        
         else
         {
             line.SetPosition(1, shootingPoint.position + shootingPoint.up * 30);
         }
+        GetComponentInParent<playerStat>().currentLAmmo--;
     }
 }

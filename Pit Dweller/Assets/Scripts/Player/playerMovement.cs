@@ -14,11 +14,13 @@ public class playerMovement : MonoBehaviour {
     private Rigidbody2D rb;
     [SerializeField]
     private bool grounded;
-
+    private bool isRunning;
+    private Animator animator;
     void Start()
     {
         dashTime = startDash;
         rb = GetComponent<Rigidbody2D>();
+        animator = this.GetComponent<Animator>();
     }
     
     void Update () {
@@ -26,6 +28,12 @@ public class playerMovement : MonoBehaviour {
         if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
         {
             transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
+            isRunning = true;
+        }
+        if (Input.GetAxisRaw("Horizontal") == 0)
+        {
+            isRunning = false;
+            animator.SetBool("isRunning", false);
         }
         //JUMP
         if (Input.GetKeyDown(KeyCode.W) && grounded == true)
@@ -45,6 +53,11 @@ public class playerMovement : MonoBehaviour {
         else
         {
             moveSpeed = 7;
+        }
+
+        if (isRunning)
+        {
+            animator.SetBool("isRunning", true);
         }
         
     }
