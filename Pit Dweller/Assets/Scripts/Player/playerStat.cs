@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class playerStat : MonoBehaviour {
@@ -16,14 +17,16 @@ public class playerStat : MonoBehaviour {
     public Text healthText;
 
     private float regenRates;
-    private int regenAmount = 2;
+    [SerializeField]
+    private int regenAmount;
     private float timeElapsedColor;
     private bool isColorChanged;
     private float timeShotCounter;
 
     private float timeLShotCounter;
     private float regenLRates;
-    private int regenLAmount = 5;
+    [SerializeField]
+    private int regenLAmount;
 
     public float TimeShotCounter
     {
@@ -93,6 +96,11 @@ public class playerStat : MonoBehaviour {
                     currentLAmmo = ammoLCapcity;
                 }
             }
+        }
+
+        if (currentHealth <= 0)
+        {
+            SceneManager.LoadScene("Lose");
         }
 
     }

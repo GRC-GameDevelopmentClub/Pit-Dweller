@@ -26,10 +26,17 @@ public class bullets : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         wormBehavior worm = collision.GetComponent<wormBehavior>();
+        spiderBehavior spider = collision.GetComponent<spiderBehavior>();
 
         if (worm != null)
         {
             worm.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+
+        if (spider != null)
+        {
+            spider.TakeDamage(damage);
             Destroy(gameObject);
         }
     }

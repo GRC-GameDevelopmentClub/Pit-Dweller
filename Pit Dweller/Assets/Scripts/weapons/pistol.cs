@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class pistol : MonoBehaviour {
-    public Transform shootingPoint;
-    public Transform bulletTrailPrefab;
+    public Transform shootingPoint, muzzleflashpoint;
+    public Transform bulletTrailPrefab, muzzleFlashPrefab;
     public float fireRate;
     public float reloadTime;
     public Text ammotext;
+    public AudioSource shootingSound;
 
     private float firecounter;
     private bool justShot;
@@ -42,6 +43,19 @@ public class pistol : MonoBehaviour {
     }
     void Shoot()
     {
+        Transform clone = Instantiate(muzzleFlashPrefab, muzzleflashpoint.position, muzzleflashpoint.rotation);
+        clone.parent = shootingPoint;
+        float size = Random.Range(0.4f, 0.6f);
+        clone.localScale = new Vector3(size, size, size);
+        Destroy(clone.gameObject, 0.09f);
         Instantiate(bulletTrailPrefab, shootingPoint.position, shootingPoint.rotation);
+        PlaySound(shootingSound);
+    }
+
+    void PlaySound(AudioSource sound)
+    {
+        sound.volume = Random.Range(0.5f, 0.7f);
+        sound.pitch = Random.Range(0.8f, 1f);
+        sound.Play();
     }
 }

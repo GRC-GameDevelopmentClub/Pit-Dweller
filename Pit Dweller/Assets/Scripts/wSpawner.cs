@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class wSpawner : MonoBehaviour {
     public enum SpawnState
@@ -71,6 +72,7 @@ public class wSpawner : MonoBehaviour {
 
         if (nextWave + 1 > waves.Length - 1)
         {
+            SceneManager.LoadScene("Win");
             Debug.Log("You SURVIVED! ...Again?");
         }
         else

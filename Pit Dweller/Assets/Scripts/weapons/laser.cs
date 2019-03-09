@@ -14,6 +14,7 @@ public class laser : MonoBehaviour {
     public LineRenderer line;
     public Text ammotext;
     public Transform lineEnd;
+    public AudioSource shootingSound;
 
     private float firecounter;
     private bool justShot;
@@ -40,6 +41,10 @@ public class laser : MonoBehaviour {
                 line.enabled = true;
                 lineEnd.GetComponent<EdgeCollider2D>().enabled = true;
             }
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            shootingSound.Stop();
         }
 
 
@@ -74,5 +79,16 @@ public class laser : MonoBehaviour {
             line.SetPosition(1, shootingPoint.position + shootingPoint.up * 30);
         }
         GetComponentInParent<playerStat>().currentLAmmo--;
+        if (!shootingSound.isPlaying)
+        {
+            PlaySound(shootingSound);
+        }
+    }
+
+    void PlaySound(AudioSource sound)
+    {
+        sound.volume = Random.Range(0.3f, 0.5f);
+        sound.pitch = Random.Range(1.5f, 1.8f);
+        sound.Play();
     }
 }

@@ -11,7 +11,8 @@ public class wormBehavior : MonoBehaviour {
     private float timeElapsedColor;
     private bool isColorChanged;
     private float lastAttack;
-    private float speed = 3f;
+    [SerializeField]
+    private float speed;
     private Transform playerTarget;
     // Use this for initialization
     void Start () {

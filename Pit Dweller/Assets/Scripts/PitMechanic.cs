@@ -15,7 +15,10 @@ public class PitMechanic : MonoBehaviour {
     private float speed;
     [SerializeField]
     private Transform transformB;
-
+    [SerializeField]
+    private ParticleSystem rain;
+    [SerializeField]
+    private Transform cloudRain;
     private bool isRaining;
     [SerializeField]
     private float rainCountdown;
@@ -37,6 +40,8 @@ public class PitMechanic : MonoBehaviour {
     {
         if (rainDuration <= 0)
         {
+            cloudRain.gameObject.SetActive(false);
+            rain.Stop();
             isRaining = false;
             rainingText.SetActive(false);
             rainCountdown -= Time.deltaTime;
@@ -49,9 +54,11 @@ public class PitMechanic : MonoBehaviour {
         }
         else
         {
+            cloudRain.gameObject.SetActive(true);
             rainDuration -= Time.deltaTime;
             isRaining = true;
             rainingText.SetActive(true);
+            rain.Play();
             if (rainDuration <= 0)
             {
                 rainCountdown = 30;
