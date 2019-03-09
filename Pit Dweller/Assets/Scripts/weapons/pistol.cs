@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class pistol : MonoBehaviour {
     public Transform shootingPoint;
     public Transform bulletTrailPrefab;
     public float fireRate;
-    public int ammoCapcity = 20;
-    public int currentAmmo = 20;
     public float reloadTime;
+    public Text ammotext;
 
     private float firecounter;
     private bool justShot;
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Start()
+    {
+
+    }
+    // Update is called once per frame
+    void Update () {
+        ammotext.text = "Ammo: \u221E";
 
         if (Input.GetButton("Fire1"))
         {

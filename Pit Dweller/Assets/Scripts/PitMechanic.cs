@@ -54,7 +54,7 @@ public class PitMechanic : MonoBehaviour {
             rainingText.SetActive(true);
             if (rainDuration <= 0)
             {
-                rainCountdown = 10;
+                rainCountdown = 30;
                 ChangePos();
             }
         }
