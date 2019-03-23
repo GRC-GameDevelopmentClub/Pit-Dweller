@@ -9,6 +9,8 @@ public class playerMovement : MonoBehaviour {
     public float startDash;
 
     [SerializeField]
+    private Transform weaponHolder;
+    [SerializeField]
     private float dashTime;
     private bool isDashing;
     private Rigidbody2D rb;
@@ -54,14 +56,17 @@ public class playerMovement : MonoBehaviour {
         {
             moveSpeed = 7;
         }
-
+        if (grounded)
+        {
+            animator.SetBool("isSwiming", false);
+        }
+        //CHECK IF RUNNING
         if (isRunning)
         {
             animator.SetBool("isRunning", true);
         }
         
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -77,5 +82,23 @@ public class playerMovement : MonoBehaviour {
         }
     }
 
-   
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
+            foreach (Transform weapon in weaponHolder)
+            {
+                weapon.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
+            weaponHolder.GetComponent<weaponSwitching>().WeaponSwitch();
+        }
+    }
+
 }

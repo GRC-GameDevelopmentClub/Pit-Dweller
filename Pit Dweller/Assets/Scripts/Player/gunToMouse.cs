@@ -7,6 +7,8 @@ public class gunToMouse : MonoBehaviour {
     private Transform leftHand;
     [SerializeField]
     private Transform rightHand;
+    [SerializeField]
+    private Transform player;
 
     void Update()
     {
@@ -24,17 +26,17 @@ public class gunToMouse : MonoBehaviour {
 
         if (mousePosition.x < leftHand.position.x)
         {
-            transform.position = leftHand.position;
-            transform.localScale = new Vector2(-1, transform.localScale.y);
+            player.localScale = new Vector2(-2, 2);
+            transform.position = rightHand.position;
         }
         else if (mousePosition.x == playerScreenPoint.x)
         {
-            transform.position = leftHand.position;
+            //transform.position = leftHand.position;
         }
         else
         {
+            player.localScale = new Vector2(2, 2);
             transform.position = rightHand.position;
-            transform.localScale = new Vector2(1, transform.localScale.y);
         }
 
     }
